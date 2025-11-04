@@ -17,5 +17,13 @@ jobs:
           ls -la ${{ github.workspace }}
           echo "------"
           ls -la ${{ github.workspace }}/.git
-          
+          # For this example, we'll just create a dummy report
+          echo "Scan complete. 3 vulnerabilities found." > report.txt
+      # 5. This step "creates the report" by uploading it
+      - name: 'Upload scan report'
+        if: always() # Run this step even if the scan step fails
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-report # The name of the artifact
+          path: report.txt  # The file(s) to upload
       - run: echo "🍏 This job's status is ${{ job.status }}."
