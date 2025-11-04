@@ -15,7 +15,9 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-          sudo apt update
-          sudo apt install neofetch
+      - name: Fastfetch
+        run: |
+          sudo apt update 
+          sudo apt install fastfetch
           neofetch
       - run: echo "🍏 This job's status is ${{ job.status }}."
